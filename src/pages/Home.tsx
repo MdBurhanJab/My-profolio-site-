@@ -4,11 +4,11 @@ import { motion } from 'motion/react';
 import { ArrowRight, Code, Sparkles, Users, Award, CheckCircle2 } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
 
-const stats = [
-  { label: 'Clinics Served', value: '40+' },
-  { label: 'Patient Leads Generated', value: '12K+' },
-  { label: 'Design Awards', value: '08' },
-  { label: 'ROI Average', value: '300%' },
+const benefits = [
+  { icon: Users, title: 'Personalized Attention', desc: 'Direct collaboration and dedicated focus on your clinic.' },
+  { icon: Code, title: 'Modern Tech Stack', desc: 'Fast, secure, and accessible websites built with the latest tools.' },
+  { icon: CheckCircle2, title: 'Transparent Process', desc: 'Clear communication and step-by-step guidance.' },
+  { icon: Award, title: 'Quality Driven', desc: 'High-quality design tailored for growing dental practices.' },
 ];
 
 const featuredWork = [
@@ -149,7 +149,7 @@ export default function Home() {
         <div className="flex animate-marquee whitespace-nowrap">
           {[...Array(10)].map((_, i) => (
             <div key={i} className="flex items-center gap-12 mx-12">
-              <span className="text-2xl font-display font-bold text-white/20 uppercase tracking-tighter">Trusted by 40+ Clinics</span>
+              <span className="text-2xl font-display font-bold text-white/20 uppercase tracking-tighter">Modern Dental Web Design</span>
               <span className="text-2xl font-display font-bold text-accent/40 uppercase tracking-tighter">High Conversion Design</span>
               <span className="text-2xl font-display font-bold text-white/20 uppercase tracking-tighter">Dental SEO Experts</span>
             </div>
@@ -202,22 +202,31 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Stats Counters */}
+      {/* Why Choose Us */}
       <section className="py-32 bg-surface/20 border-y border-white/5">
-        <div className="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-12">
-          {stats.map((stat, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
-              className="text-center"
-            >
-              <h3 className="text-5xl md:text-7xl font-display font-extrabold text-accent mb-2">{stat.value}</h3>
-              <p className="text-text-secondary text-sm font-bold uppercase tracking-widest">{stat.label}</p>
-            </motion.div>
-          ))}
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-6xl mb-4">WHY CHOOSE <span className="text-accent">US</span></h2>
+            <p className="text-text-secondary text-lg max-w-2xl mx-auto">Dedicated to helping new and growing dental practices establish a strong digital presence.</p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {benefits.map((benefit, idx) => (
+              <motion.div
+                key={idx}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: idx * 0.1 }}
+                className="glass p-8 rounded-lg text-center hover:border-accent/50 transition-colors"
+              >
+                <div className="mx-auto w-12 h-12 bg-accent/10 rounded-full flex items-center justify-center mb-6 text-accent">
+                  <benefit.icon size={24} />
+                </div>
+                <h3 className="text-xl font-bold mb-3 text-white">{benefit.title}</h3>
+                <p className="text-text-secondary text-sm leading-relaxed">{benefit.desc}</p>
+              </motion.div>
+            ))}
+          </div>
         </div>
       </section>
 
