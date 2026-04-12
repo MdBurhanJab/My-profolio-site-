@@ -12,7 +12,6 @@ const pricing = [
     features: [
       'Single Page Landing Design',
       'Mobile Responsive',
-      'Basic SEO Setup',
       'WhatsApp Integration',
       'Contact Form',
       '1 Month Support',
@@ -25,7 +24,6 @@ const pricing = [
     desc: 'Comprehensive solution for established clinics wanting more patient leads.',
     features: [
       'Multi-page Website (Up to 5)',
-      'Advanced Dental SEO',
       'Patient Portal Integration',
       'Content Strategy',
       'Google Maps Optimization',
@@ -39,7 +37,6 @@ const pricing = [
     desc: 'The ultimate digital experience for high-end dental studios and chains.',
     features: [
       'Custom High-End Design',
-      'Full SEO & Content Marketing',
       'Custom Booking System',
       'Brand Identity Kit',
       'Performance Optimization',
@@ -63,16 +60,17 @@ export default function Services() {
     <div className="pt-32 pb-32">
       <section className="px-6 max-w-7xl mx-auto mb-32">
         <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 60, filter: "blur(10px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-[clamp(48px,8vw,96px)] leading-[1.05] mb-12"
         >
           OUR <span className="text-accent">SERVICES</span>
         </motion.h1>
         <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.2 }}
+          initial={{ opacity: 0, filter: "blur(10px)" }}
+          animate={{ opacity: 1, filter: "blur(0px)" }}
+          transition={{ delay: 0.2, duration: 0.8 }}
           className="text-text-secondary text-xl max-w-2xl leading-relaxed"
         >
           Transparent pricing and specialized solutions designed to grow your dental practice.
@@ -85,29 +83,30 @@ export default function Services() {
           {pricing.map((plan, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
+              initial={{ opacity: 0, y: 60, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: idx * 0.15, ease: "easeOut" }}
+              whileHover={{ y: -10 }}
               className={cn(
                 "card-uiverse flex flex-col h-full transition-all duration-500",
-                plan.accent ? "scale-105 shadow-2xl" : ""
+                plan.accent ? "scale-105 shadow-2xl shadow-accent/20" : ""
               )}
             >
               <div className="card-uiverse-content p-10 flex flex-col h-full">
-                <h3 className={cn("text-2xl mb-2", plan.accent ? "text-white" : "text-accent")}>{plan.name}</h3>
+                <h3 className={cn("text-2xl mb-2", plan.accent ? "text-text-primary" : "text-accent")}>{plan.name}</h3>
                 <div className="flex items-baseline gap-2 mb-6">
-                  <span className="text-4xl font-display font-bold text-white">{plan.price}</span>
-                  <span className={cn("text-sm", plan.accent ? "text-white/60" : "text-text-secondary")}>/ project</span>
+                  <span className="text-4xl font-display font-bold text-text-primary">{plan.price}</span>
+                  <span className={cn("text-sm", plan.accent ? "text-text-primary/60" : "text-text-secondary")}>/ project</span>
                 </div>
-                <p className={cn("text-sm mb-8 leading-relaxed", plan.accent ? "text-white/80" : "text-text-secondary")}>
+                <p className={cn("text-sm mb-8 leading-relaxed", plan.accent ? "text-text-primary/80" : "text-text-secondary")}>
                   {plan.desc}
                 </p>
                 <div className="space-y-4 mb-10 flex-grow">
                   {plan.features.map((feature, i) => (
                     <div key={i} className="flex items-center gap-3">
                       <Check size={16} className={plan.accent ? "text-accent" : "text-accent"} />
-                      <span className={cn("text-sm", plan.accent ? "text-white" : "text-text-primary")}>{feature}</span>
+                      <span className={cn("text-sm", plan.accent ? "text-text-primary" : "text-text-primary")}>{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -134,14 +133,14 @@ export default function Services() {
               <Sparkles size={32} />
             </div>
             <div>
-              <h3 className="text-2xl text-white">Maintenance Add-on</h3>
+              <h3 className="text-2xl text-text-primary">Maintenance Add-on</h3>
               <p className="text-text-secondary">Keep your site secure, updated, and fast every single month.</p>
             </div>
           </div>
           <div className="text-center md:text-right">
-            <span className="text-3xl font-display font-extrabold text-white">₹8,000</span>
+            <span className="text-3xl font-display font-extrabold text-text-primary">₹8,000</span>
             <span className="text-text-secondary"> / month</span>
-            <Link to="/contact" className="block mt-2 text-accent font-bold uppercase tracking-widest text-sm hover:text-white transition-colors">
+            <Link to="/contact" className="block mt-2 text-accent font-bold uppercase tracking-widest text-sm hover:text-text-primary transition-colors">
               Add to Package
             </Link>
           </div>

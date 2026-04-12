@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 import { cn } from '@/src/lib/utils';
+import ThemeToggle from './ThemeToggle';
 
 const navLinks = [
   { name: 'Home', path: '/' },
@@ -31,21 +32,21 @@ export default function Navbar() {
     <nav
       className={cn(
         'fixed top-0 left-0 w-full z-50 transition-all duration-500 py-6',
-        scrolled ? 'bg-background/80 backdrop-blur-lg py-4 border-b border-white/5' : 'bg-transparent'
+        scrolled ? 'bg-background/80 backdrop-blur-lg py-4 border-b border-border-color' : 'bg-transparent'
       )}
     >
       <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
         <Link to="/" className="text-2xl font-display font-bold tracking-tight group">
-          DENTA<span className="text-accent group-hover:text-white transition-colors">STUDIO</span>
+          DENTA<span className="text-accent group-hover:text-text-primary transition-colors">STUDIO</span>
         </Link>
 
         {/* Desktop Nav */}
-        <div className="hidden md:flex items-center gap-10">
+        <div className="hidden md:flex items-center gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.path}
               to={link.path}
-              className="relative text-sm font-medium uppercase tracking-widest text-text-secondary hover:text-white transition-colors group"
+              className="relative text-sm font-medium uppercase tracking-widest text-text-secondary hover:text-text-primary transition-colors group"
             >
               {link.name}
               <motion.span
@@ -55,21 +56,27 @@ export default function Navbar() {
               />
             </Link>
           ))}
-          <Link
-            to="/contact"
-            className="btn-uiverse !py-2.5 !px-6 !text-xs"
-          >
-            Get Started
-          </Link>
+          <div className="flex items-center gap-4 border-l border-border-color pl-8">
+            <ThemeToggle />
+            <Link
+              to="/contact"
+              className="btn-uiverse !py-2.5 !px-6 !text-xs"
+            >
+              Get Started
+            </Link>
+          </div>
         </div>
 
         {/* Mobile Toggle */}
-        <button
-          className="md:hidden text-white"
-          onClick={() => setIsOpen(!isOpen)}
-        >
-          {isOpen ? <X size={28} /> : <Menu size={28} />}
-        </button>
+        <div className="flex items-center gap-4 md:hidden">
+          <ThemeToggle />
+          <button
+            className="text-text-primary"
+            onClick={() => setIsOpen(!isOpen)}
+          >
+            {isOpen ? <X size={28} /> : <Menu size={28} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -83,7 +90,7 @@ export default function Navbar() {
           <Link
             key={link.path}
             to={link.path}
-            className="text-4xl font-display font-bold text-white hover:text-accent transition-colors"
+            className="text-4xl font-display font-bold text-text-primary hover:text-accent transition-colors"
           >
             {link.name}
           </Link>

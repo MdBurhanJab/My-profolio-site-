@@ -25,8 +25,9 @@ export default function About() {
     <div className="pt-32 pb-32">
       <section className="px-6 max-w-7xl mx-auto mb-32">
         <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 0, y: 60, filter: "blur(10px)" }}
+          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="text-[clamp(48px,8vw,96px)] leading-[1.05] mb-12"
         >
           OUR <span className="text-accent">STORY</span>
@@ -38,7 +39,7 @@ export default function About() {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.2 }}
           >
-            <p className="text-2xl md:text-3xl text-white leading-relaxed mb-8">
+            <p className="text-2xl md:text-3xl text-text-primary leading-relaxed mb-8">
               Your clinic provides <span className="text-accent">world-class care</span>. Your website should be a <span className="text-accent">patient acquisition machine</span>.
             </p>
             <p className="text-text-secondary text-lg leading-relaxed mb-8">
@@ -50,15 +51,17 @@ export default function About() {
           </motion.div>
           
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4 }}
-            className="relative aspect-square rounded-sm overflow-hidden border-thin"
+            initial={{ opacity: 0, scale: 0.9, rotate: 2 }}
+            animate={{ opacity: 1, scale: 1, rotate: 0 }}
+            transition={{ duration: 1, delay: 0.4, ease: "easeOut" }}
+            className="relative aspect-square rounded-sm overflow-hidden border-thin group"
           >
-            <img
+            <motion.img
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
               src="https://images.unsplash.com/photo-1551076805-e1869033e561?auto=format&fit=crop&q=80&w=1200"
               alt="Studio Workspace"
-              className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
+              className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700"
               referrerPolicy="no-referrer"
             />
             <div className="absolute inset-0 bg-accent/10 pointer-events-none" />
@@ -67,22 +70,23 @@ export default function About() {
       </section>
 
       {/* Values Grid */}
-      <section className="py-32 bg-surface/20 border-y border-white/5 px-6">
+      <section className="py-32 bg-surface/20 border-y border-border-color px-6">
         <div className="max-w-7xl mx-auto">
           <h2 className="text-5xl mb-20">CORE <span className="text-accent">VALUES</span></h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {values.map((v, idx) => (
               <motion.div
                 key={idx}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: idx * 0.1 }}
+                initial={{ opacity: 0, y: 40, scale: 0.95 }}
+                whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                viewport={{ once: true, margin: "-50px" }}
+                transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
+                whileHover={{ y: -10 }}
                 className="card-uiverse"
               >
                 <div className="card-uiverse-content p-10 group">
                   <v.icon size={40} className="text-accent mb-8 group-hover:scale-110 transition-transform" />
-                  <h3 className="text-2xl mb-4">{v.title}</h3>
+                  <h3 className="text-2xl mb-4 text-text-primary">{v.title}</h3>
                   <p className="text-text-secondary leading-relaxed">{v.desc}</p>
                 </div>
               </motion.div>
@@ -98,15 +102,16 @@ export default function About() {
           {techStack.map((tech, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1 }}
+              initial={{ opacity: 0, y: 40, scale: 0.95 }}
+              whileInView={{ opacity: 1, y: 0, scale: 1 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, delay: idx * 0.1, ease: "easeOut" }}
+              whileHover={{ y: -10 }}
               className="card-uiverse"
             >
               <div className="card-uiverse-content p-10 group">
                 <tech.icon size={32} className="text-accent mb-6 group-hover:scale-110 transition-transform" />
-                <h3 className="text-xl mb-4 text-white">{tech.title}</h3>
+                <h3 className="text-xl mb-4 text-text-primary">{tech.title}</h3>
                 <p className="text-text-secondary leading-relaxed text-sm">{tech.desc}</p>
               </div>
             </motion.div>

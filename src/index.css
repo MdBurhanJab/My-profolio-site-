@@ -4,32 +4,58 @@
   --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Outfit", sans-serif;
 
-  --color-background: #08080f;
-  --color-surface: #10101e;
-  --color-accent: #7c3aed;
-  --color-text-primary: #e8e8f0;
-  --color-text-secondary: #8888a0;
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-accent: var(--accent);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-border-color: var(--border-color);
 }
 
 @layer base {
+  :root {
+    --background: #ffffff;
+    --surface: #f8f9fa;
+    --accent: #7c3aed;
+    --text-primary: #1a1a2e;
+    --text-secondary: #64748b;
+    --border-color: #e2e8f0;
+  }
+
+  .dark {
+    --background: #08080f;
+    --surface: #10101e;
+    --accent: #7c3aed;
+    --text-primary: #e8e8f0;
+    --text-secondary: #8888a0;
+    --border-color: #1a1a2e;
+  }
+
   * {
-    @apply border-[#1a1a2e];
+    @apply border-border-color;
+  }
+  html {
+    scroll-behavior: smooth;
   }
   body {
-    @apply font-sans antialiased bg-background text-text-primary overflow-x-hidden;
+    @apply font-sans antialiased bg-background text-text-primary overflow-x-hidden transition-colors duration-300;
   }
   h1, h2, h3, h4, h5, h6 {
     @apply font-display font-bold tracking-tight;
   }
 }
 
+@utility perspective-1000 {
+  perspective: 1000px;
+}
+
 @utility border-thin {
   border-width: 0.5px;
-  border-color: rgba(255, 255, 255, 0.1);
+  border-color: var(--border-color);
 }
 
 @utility glass {
-  background-color: rgba(16, 16, 30, 0.8);
+  background-color: color-mix(in srgb, var(--surface) 80%, transparent);
   backdrop-filter: blur(12px);
   @apply border-thin;
 }
@@ -37,7 +63,7 @@
 @utility text-gradient {
   background-clip: text;
   color: transparent;
-  background-image: linear-gradient(to right, var(--color-accent), #a78bfa);
+  background-image: linear-gradient(to right, var(--accent), #a78bfa);
 }
 
 @utility hide-scrollbar {
@@ -52,19 +78,19 @@
 .cursor-glow {
   width: 20px;
   height: 20px;
-  background: #7c3aed;
+  background: var(--accent);
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
   z-index: 9999;
-  mix-blend-mode: screen;
+  mix-blend-mode: difference;
   transition: transform 0.1s ease-out;
 }
 
 .cursor-ring {
   width: 40px;
   height: 40px;
-  border: 1px solid #7c3aed;
+  border: 1px solid var(--accent);
   border-radius: 50%;
   position: fixed;
   pointer-events: none;
@@ -84,9 +110,9 @@
 
 /* Pulse Animation for WhatsApp */
 @keyframes pulse-purple {
-  0% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0.4); }
-  70% { box-shadow: 0 0 0 15px rgba(124, 58, 237, 0); }
-  100% { box-shadow: 0 0 0 0 rgba(124, 58, 237, 0); }
+  0% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 40%, transparent); }
+  70% { box-shadow: 0 0 0 15px color-mix(in srgb, var(--accent) 0%, transparent); }
+  100% { box-shadow: 0 0 0 0 color-mix(in srgb, var(--accent) 0%, transparent); }
 }
 
 .pulse-ring {
@@ -104,9 +130,9 @@
   align-items: center;
   justify-content: center;
   padding: 16px 32px;
-  color: #fff;
-  background: #08080f;
-  border: 1px solid rgba(124, 58, 237, 0.4);
+  color: var(--text-primary);
+  background: var(--background);
+  border: 1px solid color-mix(in srgb, var(--accent) 40%, transparent);
   border-radius: 8px;
   font-weight: 700;
   text-transform: uppercase;
@@ -123,14 +149,15 @@
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(124, 58, 237, 0.6), transparent);
+  background: linear-gradient(90deg, transparent, color-mix(in srgb, var(--accent) 60%, transparent), transparent);
   transition: all 0.5s ease;
   z-index: -1;
 }
 .btn-uiverse:hover {
-  box-shadow: 0 0 20px rgba(124, 58, 237, 0.5);
-  border-color: #7c3aed;
+  box-shadow: 0 0 20px color-mix(in srgb, var(--accent) 50%, transparent);
+  border-color: var(--accent);
   transform: translateY(-2px);
+  color: #fff;
 }
 .btn-uiverse:hover::before {
   left: 100%;
@@ -139,7 +166,7 @@
 /* 2. Uiverse Card (Animated Gradient Border) */
 .card-uiverse {
   position: relative;
-  background: #10101e;
+  background: var(--surface);
   border-radius: 12px;
   z-index: 1;
   overflow: hidden;
@@ -152,7 +179,7 @@
   left: -50%;
   width: 200%;
   height: 200%;
-  background: conic-gradient(transparent, rgba(124, 58, 237, 0.8), transparent 30%);
+  background: conic-gradient(transparent, color-mix(in srgb, var(--accent) 80%, transparent), transparent 30%);
   animation: spin 4s linear infinite;
   z-index: -2;
   opacity: 0;
@@ -162,7 +189,7 @@
   content: "";
   position: absolute;
   inset: 2px;
-  background: #10101e;
+  background: var(--surface);
   border-radius: 10px;
   z-index: -1;
 }
@@ -173,7 +200,7 @@
   position: relative;
   z-index: 2;
   height: 100%;
-  background: #10101e;
+  background: var(--surface);
   border-radius: 10px;
 }
 
@@ -185,23 +212,23 @@
 .input-uiverse {
   width: 100%;
   padding: 16px;
-  background: #10101e;
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: var(--surface);
+  border: 1px solid color-mix(in srgb, var(--text-primary) 10%, transparent);
   border-radius: 8px;
-  color: #fff;
+  color: var(--text-primary);
   outline: none;
   transition: all 0.3s ease;
 }
 .input-uiverse:focus {
-  border-color: #7c3aed;
-  box-shadow: 0 0 15px rgba(124, 58, 237, 0.2);
+  border-color: var(--accent);
+  box-shadow: 0 0 15px color-mix(in srgb, var(--accent) 20%, transparent);
 }
 .input-label {
   position: absolute;
   left: 16px;
   top: 50%;
   transform: translateY(-50%);
-  color: #8888a0;
+  color: var(--text-secondary);
   pointer-events: none;
   transition: all 0.3s ease;
   font-size: 12px;
@@ -216,9 +243,9 @@ textarea.input-uiverse ~ .input-label {
 .input-uiverse:not(:placeholder-shown) ~ .input-label {
   top: 0;
   font-size: 10px;
-  background: #10101e;
+  background: var(--surface);
   padding: 0 8px;
-  color: #7c3aed;
+  color: var(--accent);
 }
 
 /* 4. Uiverse Loader (Double Spin Rings) */
@@ -233,7 +260,7 @@ textarea.input-uiverse ~ .input-label {
   border-radius: 50%;
   position: absolute;
   border: 4px solid transparent;
-  border-top-color: #7c3aed;
+  border-top-color: var(--accent);
   border-bottom-color: #a78bfa;
   animation: spin 2s linear infinite;
 }
@@ -243,7 +270,7 @@ textarea.input-uiverse ~ .input-label {
   top: 15%;
   left: 15%;
   border-top-color: #a78bfa;
-  border-bottom-color: #7c3aed;
+  border-bottom-color: var(--accent);
   animation: spin 1.5s linear infinite reverse;
 }
 @keyframes spin {

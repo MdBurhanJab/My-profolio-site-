@@ -37,7 +37,7 @@ export default function PageLoader() {
               initial={{ y: 100, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
               transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-              className="text-4xl md:text-6xl font-display font-bold text-white"
+              className="text-4xl md:text-6xl font-display font-bold text-text-primary"
             >
               DENTA<span className="text-accent">STUDIO</span>
             </motion.h1>

@@ -28,7 +28,7 @@ export default function Footer() {
           </div>
 
           <div className="md:col-span-2">
-            <h4 className="text-white font-bold uppercase tracking-widest text-sm mb-8">Studio</h4>
+            <h4 className="text-text-primary font-bold uppercase tracking-widest text-sm mb-8">Studio</h4>
             <ul className="space-y-4">
               <li><Link to="/work" className="text-text-secondary hover:text-accent transition-colors">Work</Link></li>
               <li><Link to="/services" className="text-text-secondary hover:text-accent transition-colors">Services</Link></li>
@@ -38,7 +38,7 @@ export default function Footer() {
           </div>
 
           <div className="md:col-span-2">
-            <h4 className="text-white font-bold uppercase tracking-widest text-sm mb-8">Services</h4>
+            <h4 className="text-text-primary font-bold uppercase tracking-widest text-sm mb-8">Services</h4>
             <ul className="space-y-4">
               <li><span className="text-text-secondary">Web Design</span></li>
               <li><span className="text-text-secondary">Dental SEO</span></li>
@@ -48,7 +48,7 @@ export default function Footer() {
           </div>
 
           <div className="md:col-span-3">
-            <h4 className="text-white font-bold uppercase tracking-widest text-sm mb-8">Newsletter</h4>
+            <h4 className="text-text-primary font-bold uppercase tracking-widest text-sm mb-8">Newsletter</h4>
             <p className="text-text-secondary text-sm mb-6">Get dental marketing tips delivered to your inbox.</p>
             <div className="flex flex-col gap-4">
               <div className="input-group">
@@ -66,11 +66,11 @@ export default function Footer() {
           </div>
         </div>
 
-        <div className="pt-12 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6 text-text-secondary text-xs font-bold uppercase tracking-widest">
+        <div className="pt-12 border-t border-border-color flex flex-col md:flex-row justify-between items-center gap-6 text-text-secondary text-xs font-bold uppercase tracking-widest">
           <p>© 2024 DentaStudio. All Rights Reserved.</p>
           <div className="flex gap-8">
-            <a href="#" className="hover:text-white transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-text-primary transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-text-primary transition-colors">Terms of Service</a>
           </div>
         </div>
       </div>
